@@ -1,49 +1,69 @@
-# BeachHack Template Repository
-
-![BeachHack Banner](https://github.com/user-attachments/assets/b46c3336-f9eb-473a-ba76-bcf5c0f29d0d)
-
-Official starter template repository for **BeachHack** hackathon participants.
+# 🏭 Explainable Predictive Maintenance System  
+### with Decision Trace Engine & Agentic Explainability
 
 ---
 
-## 📌 Instructions
+## 📌 Project Overview
 
-All teams must **fork this repository** at the start of the hackathon and use the forked repository for all development work. Use of personal or pre-existing repositories is not allowed.
+Industrial environments generate massive amounts of sensor data, yet **maintenance decisions are still distrusted and delayed** due to opaque AI systems.
 
-You are **not restricted to the track or domain** you submitted your initial idea under. Teams are free to choose **any of the released problem statements**.
+Most predictive maintenance solutions fail because:
+- Alerts are **black‑box**
+- Engineers cannot see **why** a decision was made
+- Predictions do not translate into **clear maintenance actions**
 
----
+This project addresses that gap by building a system that is:
+- **Explainable**
+- **Traceable**
+- **Action‑oriented**
 
-## ⏱️ Important Rules
+The core idea is simple:
 
-- All development must begin **after forking** this repository.
-- The problem statements were shared in advance **only for ideation and planning**.
-- **No pre-built or pre-developed solutions** are allowed in any form.
-- Commit history and repository metadata will be actively reviewed.
-- Any violation of these rules may result in **immediate disqualification**.
-
----
-
-## 🛠️ Project Setup
-
-This repository does **not enforce any folder structure or technology stack**.  
-Teams are free to organize their project and choose tools, frameworks, and platforms as required by their solution.
+> **Do not just predict failures — record and explain how every decision was made, and turn it into action.**
 
 ---
 
-## 📤 Submission Guidelines
+## 🎯 Problem We Solve
 
-Your forked repository will be considered your final submission.  
-Ensure your repository includes a clear README describing:
-- Selected problem statement
-- Project overview
-- Technical approach
-- Setup instructions
-- Demo links
-- Screenshots
+Unplanned downtime costs industries billions annually.  
+Existing solutions suffer from:
+
+- ❌ Opaque predictions  
+- ❌ Logical mismatch between expected and real behavior  
+- ❌ No clear path from alert → action  
+
+Our system focuses on **decision transparency and trust**, not just prediction accuracy.
 
 ---
 
-Good luck, and happy hacking 🚀  
-**– Team BeachHack**
+## 🧠 Core Idea
 
+At the heart of the system is a **Decision Trace Engine**.
+
+Instead of asking:
+> *“What did the model predict?”*
+
+We answer:
+> *“How did the system reach this decision, step by step?”*
+
+Every alert is backed by a **complete reasoning trace** that can be:
+- inspected
+- explained
+- challenged
+- improved
+
+---
+
+## 🏗️ System Architecture (High Level)
+
+The system is composed of **four core layers**.  
+Each layer has a clear responsibility and a single owner.
+
+### Architecture Flow
+
+```mermaid
+flowchart TD
+    A[Sensor & Data Reality Layer] --> B[Reasoning & Decision Trace Engine]
+    B --> C[Explainability & Agentic Layer]
+    C --> D[Action, Feedback & Learning Layer]
+    D --> B
