@@ -266,5 +266,96 @@
             "expectation_mismatch": true
         },
         "output_explanation": "The machine has a rapid temperature spike instead of expected stable thermal profile under load. The vibration amplitude reached 0.61 (ideal is 0.4 or below), indicating a moderate risk (61%). The bearing temperature reached 75.0 (ideal is 60.0 or below), indicating a high risk (82%). Internal mechanical wear in rotating components detected."
+    },
+    {
+        "timestamp": "2026-01-31T00:02:27.858688",
+        "input_trace": {
+            "recommended_action": [
+                "Inspect bearing for visible wear",
+                "Check lubrication condition",
+                "Schedule replacement within 5\u201310 days if degradation persists"
+            ],
+            "safety_note": "Ensure machine is powered down before inspection",
+            "reference": "Bearing_Maintenance_Manual.pdf, Section 4.2"
+        },
+        "output_explanation": "The machine is not performing as expected. The sensor values are not matched to the ideal threshold. The sensor values are not matched to the ideal threshold. The machine is not operating properly."
+    },
+    {
+        "timestamp": "2026-01-31T00:04:34.379856",
+        "input_trace": {
+            "recommended_action": [
+                "Inspect bearing for visible wear",
+                "Check lubrication condition",
+                "Schedule replacement within 5\u201310 days if degradation persists"
+            ],
+            "safety_note": "Ensure machine is powered down before inspection",
+            "reference": "Bearing_Maintenance_Manual.pdf, Section 4.2"
+        },
+        "output_explanation": "This article provides recommendations for inspecting bearings for visible wear and lubrication condition. It also provides a safety note that ensures that the machine is powered down before inspection."
+    },
+    {
+        "timestamp": "2026-01-31T00:06:28.294200",
+        "input_trace": {
+            "recommended_action": [
+                "Inspect bearing for visible wear",
+                "Check lubrication condition",
+                "Schedule replacement within 5\u201310 days if degradation persists"
+            ],
+            "safety_note": "Ensure machine is powered down before inspection",
+            "reference": "Bearing_Maintenance_Manual.pdf, Section 4.2"
+        },
+        "output_explanation": "The bearing maintenance manual recommends that you inspect the bearing for visible wear, check lubrication condition, and schedule replacement within 5\u201310 days if degradation persists."
+    },
+    {
+        "timestamp": "2026-01-31T00:07:40.974617",
+        "input_trace": {
+            "recommended_action": [
+                "Inspect bearing for visible wear",
+                "Check lubrication condition",
+                "Schedule replacement within 5\u201310 days if degradation persists"
+            ],
+            "safety_note": "Ensure machine is powered down before inspection",
+            "reference": "Bearing_Maintenance_Manual.pdf, Section 4.2"
+        },
+        "output_explanation": "Check the bearings for wear."
+    },
+    {
+        "timestamp": "2026-01-31T00:08:59.883740",
+        "input_trace": {
+            "recommended_action": [
+                "Inspect bearing for visible wear",
+                "Check lubrication condition",
+                "Schedule replacement within 5\u201310 days if degradation persists"
+            ],
+            "safety_note": "Ensure machine is powered down before inspection",
+            "reference": "Bearing_Maintenance_Manual.pdf, Section 4.2"
+        },
+        "output_explanation": "The bearing maintenance manual recommends that you inspect the bearing for visible wear. You should check the lubrication condition and schedule replacement within 5\u201310 days if the wear persists. You must include every recommendation and safety note provided."
+    },
+    {
+        "timestamp": "2026-01-31T00:12:09.533853",
+        "input_trace": {
+            "recommended_action": [
+                "Inspect bearing for visible wear",
+                "Check lubrication condition",
+                "Schedule replacement within 5\u00e2\u20ac\u201c10 days if degradation persists"
+            ],
+            "safety_note": "Ensure machine is powered down before inspection",
+            "reference": "Bearing_Maintenance_Manual.pdf, Section 4.2"
+        },
+        "output_explanation": " Inspect the bearing for visible wear. Check the lubrication condition. Schedule replacement within 5\u00e2\u20ac\u201c10 days if degradation persists.  Do not summarize; list the specific actions required."
+    },
+    {
+        "timestamp": "2026-01-31T00:13:27.756850",
+        "input_trace": {
+            "recommended_action": [
+                "Inspect bearing for visible wear",
+                "Check lubrication condition",
+                "Schedule replacement within 5\u00e2\u20ac\u201c10 days if degradation persists"
+            ],
+            "safety_note": "Ensure machine is powered down before inspection",
+            "reference": "Bearing_Maintenance_Manual.pdf, Section 4.2"
+        },
+        "output_explanation": "The bearing maintenance manual recommends that you inspect the bearing for visible wear. You should check the lubrication condition and schedule replacement within 5\u201310 days if the degradation persists. You should also ensure that the machine is powered down before inspection."
     }
 ]

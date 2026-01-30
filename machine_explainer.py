@@ -44,79 +44,43 @@ class MachineExplainer:
         return int(score * 100)
 
     def _humanize_decision_trace(self, trace):
+        # GENERALIZED LOGIC:
+        # Convert any input dictionary into a flat list of text observations.
         observations = []
         
-        # Parse logic from the new 'reasoning_trace' list
-        for step in trace.get("reasoning_trace", []):
-            feature = step.get("feature", "Unknown Feature")
-            val = step.get("feature_value", 0)
+        # 1. Handle Lists (like 'recommended_action')
+        for key, value in trace.items():
+            formatted_key = key.replace("_", " ").capitalize()
             
-            # GENERALIZED LOGIC:
-            # feature_value is the physical reading (e.g., 75 degrees, 0.61 mm/s)
-            # confidence_after_step is the normalized risk score (0.0 - 1.0)
-            
-            risk_score = step.get("confidence_after_step", 0.0)
-            threshold = step.get("threshold", 0)
-            comparison = step.get("comparison", ">")
-            
-            # Use risk score for qualitative level (High/Low/Critical)
-            level = self._score_to_level(risk_score)
-            percentage = self._score_to_percentage(risk_score)
-            
-            # Infer ideal state for the explanation
-            if comparison == ">":
-                ideal = f"{threshold} or below"
-            elif comparison == "<":
-                ideal = f"{threshold} or above"
-            else:
-                ideal = f"{threshold}"
-            
-            # Construct a generalized observation
-            observations.append(
-                f"{feature.replace('_', ' ').capitalize()} reached {val} (ideal is {ideal}), indicating a {level} risk ({percentage}%)."
-            )
-
-        # Assessment based on behavior mismatch
-        observed = trace.get("observed_behavior", "unknown behavior")
-        expected = trace.get("expected_behavior", "normal behavior")
-        
-        if trace.get("expectation_mismatch", False):
-            assessment = f"Observed {observed} instead of expected {expected}."
-        else:
-            assessment = f"Observed {observed}, matching expected {expected}."
-
-        # Decision
-        raw_decision = trace.get("decision", "Unknown Condition")
-        decision_text = DECISION_INTERPRETATIONS.get(raw_decision, raw_decision.replace("_", " ").lower())
-        
-        # Confidence
-        final_conf = trace.get("final_confidence", 0.0)
-        confidence_str = f"{self._score_to_level(final_conf).capitalize()} confidence ({self._score_to_percentage(final_conf)}%)."
+            if isinstance(value, list):
+                if value:
+                    items = ", ".join(str(v) for v in value)
+                    observations.append(f"{formatted_key}: {items}")
+            elif isinstance(value, (str, int, float, bool)):
+                observations.append(f"{formatted_key}: {value}")
+            elif isinstance(value, dict):
+                 # Flatten nested dicts simply for now
+                 observations.append(f"{formatted_key}: {str(value)}")
 
         return {
-            "observations": observations,
-            "assessment": assessment,
-            "decision": f"{decision_text.capitalize()} detected.",
-            "confidence": confidence_str
+            "observations": observations
         }
 
     def generate_explanation(self, decision_trace):
         human_trace = self._humanize_decision_trace(decision_trace)
         
-        obs_text = "\n".join([f"- {obs}" for obs in human_trace['observations']])
+        data_text = "\n".join([f"- {obs}" for obs in human_trace['observations']])
 
         prompt = f"""
 Data:
-- {human_trace['assessment']}
-{obs_text}
-- {human_trace['decision']}
+{data_text}
 
-Task: Write a detailed technical explanation of the machine status.
-1. Start by mentioning the observed vs. expected behavior.
-2. For each sensor, explicitly state what value was reached and contrast it with the ideal threshold (e.g., "Temperature reached X, but the ideal is Y").
-3. Conclude with the detected condition.
+Task: Rewrite ALL the data below into a single, comprehensive imperative paragraph. 
+- You MUST include every recommendation and safety note provided.
+- Start directly with action verbs (e.g., "Inspect...", "Ensure...").
+- List each specific action required.
 
-Explanation:
+Instructions:
 """
         inputs = self.tokenizer(prompt, return_tensors="pt", truncation=True).to(self.device)
 
@@ -124,8 +88,8 @@ Explanation:
             **inputs,
             max_length=200,
             do_sample=True,
-            temperature=0.2, 
-            top_p=0.9,
+            temperature=0.3, 
+            top_p=0.95,
             repetition_penalty=1.2,
             early_stopping=True
         )
@@ -159,46 +123,42 @@ Explanation:
         
         print(f"Interaction logged to {LOG_FILE}")
 
+INPUT_FILE = "input_data.json"
+
+def load_last_input(file_path):
+    """Reads the JSON file and returns the last entry if it's a list."""
+    if not os.path.exists(file_path):
+        print(f"Error: Input file '{file_path}' not found.")
+        return None
+    
+    try:
+        with open(file_path, 'r') as f:
+            data = json.load(f)
+            
+        if isinstance(data, list):
+            if not data:
+                print("Error: Input list is empty.")
+                return None
+            print(f"Loaded input file with {len(data)} entries. Processing the last one.")
+            return data[-1]
+        elif isinstance(data, dict):
+            print("Input file contains a single entry.")
+            return data
+        else:
+            print("Error: Input file format not supported (must be list or dict).")
+            return None
+            
+    except json.JSONDecodeError as e:
+        print(f"Error decoding JSON: {e}")
+        return None
+
 def main():
-    # New Schema Example Input
-    decision_trace = {
-        "alert_id": "ALT-1024",
-        "sensor_id": "MTR-55",
-        "timestamp": "2023-10-27T10:00:00Z",
-        "decision": "EARLY_BEARING_DEGRADATION",
-        "final_confidence": 0.82,
-        "rules_triggered": [
-            "VIBRATION_TREND_RULE",
-            "THERMAL_CONFIRMATION_RULE"
-        ],
-        "reasoning_trace": [
-            {
-                "step_id": 1,
-                "rule": "VIBRATION_TREND_RULE",
-                "feature": "vibration_amplitude",
-                "feature_value": 0.61,
-                "threshold": 0.4,
-                "comparison": ">",
-                "rule_result": "FIRED",
-                "confidence_after_step": 0.61,
-                "timestamp": "2023-10-27T09:55:00Z"
-            },
-            {
-                "step_id": 2,
-                "rule": "THERMAL_CONFIRMATION_RULE",
-                "feature": "bearing_temperature",
-                "feature_value": 75.0,
-                "threshold": 60.0,
-                "comparison": ">",
-                "rule_result": "FIRED",
-                "confidence_after_step": 0.82,
-                "timestamp": "2023-10-27T09:58:00Z"
-            }
-        ],
-        "expected_behavior": "stable thermal profile under load",
-        "observed_behavior": "rapid temperature spike",
-        "expectation_mismatch": True
-    }
+    # Load Input from File
+    decision_trace = load_last_input(INPUT_FILE)
+    
+    if not decision_trace:
+        print("Aborting: No valid input data found.")
+        return
 
     # Initialize Explainer
     explainer = MachineExplainer()

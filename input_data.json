@@ -1,0 +1,11 @@
+[
+    {
+        "recommended_action": [
+            "Inspect bearing for visible wear",
+            "Check lubrication condition",
+            "Schedule replacement within 5–10 days if degradation persists"
+        ],
+        "safety_note": "Ensure machine is powered down before inspection",
+        "reference": "Bearing_Maintenance_Manual.pdf, Section 4.2"
+    }
+]
