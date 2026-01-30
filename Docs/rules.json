@@ -1,0 +1,18 @@
+{
+    "PUMP": [
+        {
+            "name": "HIGH_VIBRATION",
+            "feature": "vibration_rms",
+            "threshold": 4.0,
+            "comparison": ">",
+            "confidence_increase": 0.3
+        },
+        {
+            "name": "TEMP_SPIKE",
+            "feature": "temperature_delta",
+            "threshold": 5.0,
+            "comparison": ">",
+            "confidence_increase": 0.3
+        }
+    ]
+}
