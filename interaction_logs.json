@@ -1,0 +1,270 @@
+[
+    {
+        "timestamp": "2026-01-30T20:53:23.925440",
+        "input_trace": {
+            "decision": "EARLY_BEARING_DEGRADATION",
+            "confidence": 0.82,
+            "rules_triggered": [
+                "VIBRATION_TREND_RULE",
+                "THERMAL_CONFIRMATION_RULE"
+            ],
+            "intermediate_states": {
+                "risk_after_vibration": 0.61,
+                "risk_after_temperature": 0.82
+            }
+        },
+        "output_explanation": "Vibration indicators increased, reaching a moderate level (around 61%). Temperature indicators increased, reaching a high level (around 82%). The combined sensor behavior indicates internal mechanical wear in rotating components."
+    },
+    {
+        "timestamp": "2026-01-30T22:25:28.146616",
+        "input_trace": {
+            "alert_id": "ALT-1024",
+            "sensor_id": "MTR-55",
+            "timestamp": "2023-10-27T10:00:00Z",
+            "decision": "EARLY_BEARING_DEGRADATION",
+            "final_confidence": 0.82,
+            "rules_triggered": [
+                "VIBRATION_TREND_RULE",
+                "THERMAL_CONFIRMATION_RULE"
+            ],
+            "reasoning_trace": [
+                {
+                    "step_id": 1,
+                    "rule": "VIBRATION_TREND_RULE",
+                    "feature": "vibration_amplitude",
+                    "feature_value": 0.61,
+                    "threshold": 0.4,
+                    "comparison": ">",
+                    "rule_result": "FIRED",
+                    "confidence_after_step": 0.61,
+                    "timestamp": "2023-10-27T09:55:00Z"
+                },
+                {
+                    "step_id": 2,
+                    "rule": "THERMAL_CONFIRMATION_RULE",
+                    "feature": "bearing_temperature",
+                    "feature_value": 75.0,
+                    "threshold": 60.0,
+                    "comparison": ">",
+                    "rule_result": "FIRED",
+                    "confidence_after_step": 0.82,
+                    "timestamp": "2023-10-27T09:58:00Z"
+                }
+            ],
+            "expected_behavior": "stable thermal profile under load",
+            "observed_behavior": "rapid temperature spike",
+            "expectation_mismatch": true
+        },
+        "output_explanation": "Vibration amplitude is a measurement of the vibration of a machine component. Vibration amplitude can be measured with a vibration meter. Vibration amplitude can be measured with a vibration meter. Vibration amplitude can be measured with a vibration meter. Vibration amplitude can be measured with a vibration meter. Vibration amplitude can be measured with a vibration meter. Bearing temperature can be measured with a vibration meter. Bearing temperature can be measured with a vibration meter."
+    },
+    {
+        "timestamp": "2026-01-30T22:28:55.978830",
+        "input_trace": {
+            "alert_id": "ALT-1024",
+            "sensor_id": "MTR-55",
+            "timestamp": "2023-10-27T10:00:00Z",
+            "decision": "EARLY_BEARING_DEGRADATION",
+            "final_confidence": 0.82,
+            "rules_triggered": [
+                "VIBRATION_TREND_RULE",
+                "THERMAL_CONFIRMATION_RULE"
+            ],
+            "reasoning_trace": [
+                {
+                    "step_id": 1,
+                    "rule": "VIBRATION_TREND_RULE",
+                    "feature": "vibration_amplitude",
+                    "feature_value": 0.61,
+                    "threshold": 0.4,
+                    "comparison": ">",
+                    "rule_result": "FIRED",
+                    "confidence_after_step": 0.61,
+                    "timestamp": "2023-10-27T09:55:00Z"
+                },
+                {
+                    "step_id": 2,
+                    "rule": "THERMAL_CONFIRMATION_RULE",
+                    "feature": "bearing_temperature",
+                    "feature_value": 75.0,
+                    "threshold": 60.0,
+                    "comparison": ">",
+                    "rule_result": "FIRED",
+                    "confidence_after_step": 0.82,
+                    "timestamp": "2023-10-27T09:58:00Z"
+                }
+            ],
+            "expected_behavior": "stable thermal profile under load",
+            "observed_behavior": "rapid temperature spike",
+            "expectation_mismatch": true
+        },
+        "output_explanation": "Vibration amplitude was 0.61, which is > the threshold of 0.4. Bearing temperature was 75.0, which is > the threshold of 60.0."
+    },
+    {
+        "timestamp": "2026-01-30T22:30:49.485243",
+        "input_trace": {
+            "alert_id": "ALT-1024",
+            "sensor_id": "MTR-55",
+            "timestamp": "2023-10-27T10:00:00Z",
+            "decision": "EARLY_BEARING_DEGRADATION",
+            "final_confidence": 0.82,
+            "rules_triggered": [
+                "VIBRATION_TREND_RULE",
+                "THERMAL_CONFIRMATION_RULE"
+            ],
+            "reasoning_trace": [
+                {
+                    "step_id": 1,
+                    "rule": "VIBRATION_TREND_RULE",
+                    "feature": "vibration_amplitude",
+                    "feature_value": 0.61,
+                    "threshold": 0.4,
+                    "comparison": ">",
+                    "rule_result": "FIRED",
+                    "confidence_after_step": 0.61,
+                    "timestamp": "2023-10-27T09:55:00Z"
+                },
+                {
+                    "step_id": 2,
+                    "rule": "THERMAL_CONFIRMATION_RULE",
+                    "feature": "bearing_temperature",
+                    "feature_value": 75.0,
+                    "threshold": 60.0,
+                    "comparison": ">",
+                    "rule_result": "FIRED",
+                    "confidence_after_step": 0.82,
+                    "timestamp": "2023-10-27T09:58:00Z"
+                }
+            ],
+            "expected_behavior": "stable thermal profile under load",
+            "observed_behavior": "rapid temperature spike",
+            "expectation_mismatch": true
+        },
+        "output_explanation": "Vibration amplitude was 0.61, which is > the threshold of 0.4, and bearing temperature was 75.0, which is > the threshold of 60.0. Internal mechanical wear in rotating components detected."
+    },
+    {
+        "timestamp": "2026-01-30T22:34:26.498217",
+        "input_trace": {
+            "alert_id": "ALT-1024",
+            "sensor_id": "MTR-55",
+            "timestamp": "2023-10-27T10:00:00Z",
+            "decision": "EARLY_BEARING_DEGRADATION",
+            "final_confidence": 0.82,
+            "rules_triggered": [
+                "VIBRATION_TREND_RULE",
+                "THERMAL_CONFIRMATION_RULE"
+            ],
+            "reasoning_trace": [
+                {
+                    "step_id": 1,
+                    "rule": "VIBRATION_TREND_RULE",
+                    "feature": "vibration_amplitude",
+                    "feature_value": 0.61,
+                    "threshold": 0.4,
+                    "comparison": ">",
+                    "rule_result": "FIRED",
+                    "confidence_after_step": 0.61,
+                    "timestamp": "2023-10-27T09:55:00Z"
+                },
+                {
+                    "step_id": 2,
+                    "rule": "THERMAL_CONFIRMATION_RULE",
+                    "feature": "bearing_temperature",
+                    "feature_value": 75.0,
+                    "threshold": 60.0,
+                    "comparison": ">",
+                    "rule_result": "FIRED",
+                    "confidence_after_step": 0.82,
+                    "timestamp": "2023-10-27T09:58:00Z"
+                }
+            ],
+            "expected_behavior": "stable thermal profile under load",
+            "observed_behavior": "rapid temperature spike",
+            "expectation_mismatch": true
+        },
+        "output_explanation": "The vibration amplitude indicators increased, reaching a moderate level (around 61%). The bearing temperature indicators increased, reaching a critical level (around 7500%). The combined sensor behavior indicates internal mechanical wear in rotating components."
+    },
+    {
+        "timestamp": "2026-01-30T22:38:15.630241",
+        "input_trace": {
+            "alert_id": "ALT-1024",
+            "sensor_id": "MTR-55",
+            "timestamp": "2023-10-27T10:00:00Z",
+            "decision": "EARLY_BEARING_DEGRADATION",
+            "final_confidence": 0.82,
+            "rules_triggered": [
+                "VIBRATION_TREND_RULE",
+                "THERMAL_CONFIRMATION_RULE"
+            ],
+            "reasoning_trace": [
+                {
+                    "step_id": 1,
+                    "rule": "VIBRATION_TREND_RULE",
+                    "feature": "vibration_amplitude",
+                    "feature_value": 0.61,
+                    "threshold": 0.4,
+                    "comparison": ">",
+                    "rule_result": "FIRED",
+                    "confidence_after_step": 0.61,
+                    "timestamp": "2023-10-27T09:55:00Z"
+                },
+                {
+                    "step_id": 2,
+                    "rule": "THERMAL_CONFIRMATION_RULE",
+                    "feature": "bearing_temperature",
+                    "feature_value": 75.0,
+                    "threshold": 60.0,
+                    "comparison": ">",
+                    "rule_result": "FIRED",
+                    "confidence_after_step": 0.82,
+                    "timestamp": "2023-10-27T09:58:00Z"
+                }
+            ],
+            "expected_behavior": "stable thermal profile under load",
+            "observed_behavior": "rapid temperature spike",
+            "expectation_mismatch": true
+        },
+        "output_explanation": "The vibration amplitude indicators increased, reaching a moderate level (around 61%). The bearing temperature indicators increased, reaching a high level (around 82%). The combined sensor behavior indicates internal mechanical wear in rotating components."
+    },
+    {
+        "timestamp": "2026-01-30T22:42:40.971523",
+        "input_trace": {
+            "alert_id": "ALT-1024",
+            "sensor_id": "MTR-55",
+            "timestamp": "2023-10-27T10:00:00Z",
+            "decision": "EARLY_BEARING_DEGRADATION",
+            "final_confidence": 0.82,
+            "rules_triggered": [
+                "VIBRATION_TREND_RULE",
+                "THERMAL_CONFIRMATION_RULE"
+            ],
+            "reasoning_trace": [
+                {
+                    "step_id": 1,
+                    "rule": "VIBRATION_TREND_RULE",
+                    "feature": "vibration_amplitude",
+                    "feature_value": 0.61,
+                    "threshold": 0.4,
+                    "comparison": ">",
+                    "rule_result": "FIRED",
+                    "confidence_after_step": 0.61,
+                    "timestamp": "2023-10-27T09:55:00Z"
+                },
+                {
+                    "step_id": 2,
+                    "rule": "THERMAL_CONFIRMATION_RULE",
+                    "feature": "bearing_temperature",
+                    "feature_value": 75.0,
+                    "threshold": 60.0,
+                    "comparison": ">",
+                    "rule_result": "FIRED",
+                    "confidence_after_step": 0.82,
+                    "timestamp": "2023-10-27T09:58:00Z"
+                }
+            ],
+            "expected_behavior": "stable thermal profile under load",
+            "observed_behavior": "rapid temperature spike",
+            "expectation_mismatch": true
+        },
+        "output_explanation": "The machine has a rapid temperature spike instead of expected stable thermal profile under load. The vibration amplitude reached 0.61 (ideal is 0.4 or below), indicating a moderate risk (61%). The bearing temperature reached 75.0 (ideal is 60.0 or below), indicating a high risk (82%). Internal mechanical wear in rotating components detected."
+    }
+]
