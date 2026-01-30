@@ -162,16 +162,17 @@ end
 
 %% Maintenance & Workflow Layer
 subgraph L5["Maintenance Agent and Workflow"]
+    TI["Trace Ingestion"]
     MA["Maintenance Decision Agent"]
     WO["Work Order Generator"]
+    TI --> MA
+    MA --> WO
 end
 
 %% Explainability Layer
 subgraph L4["Explainability Agent Layer"]
-    TI["Trace Ingestion"]
     LLM["Explainability LLM"]
     EX["Human Readable Explanation"]
-    TI --> LLM
     LLM --> EX
     FB["Engineer Feedback"]
 end
@@ -179,8 +180,8 @@ end
 %% Cross Layer Flow
 SD --> FE
 RE --> DT
-FD --> MA
+FD --> TI
 EX --> FB
 MA --> WO
-WO --> TI
+WO --> LLM
 FB --> DT
