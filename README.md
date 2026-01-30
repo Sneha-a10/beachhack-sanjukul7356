@@ -159,6 +159,13 @@ subgraph L3["Decision Trace Engine"]
     DT --> JS
 end
 
+
+%% Maintenance & Workflow Layer
+subgraph L5["Maintenance Agent and Workflow"]
+    MA["Maintenance Decision Agent"]
+    WO["Work Order Generator"]
+end
+
 %% Explainability Layer
 subgraph L4["Explainability Agent Layer"]
     TI["Trace Ingestion"]
@@ -166,20 +173,14 @@ subgraph L4["Explainability Agent Layer"]
     EX["Human Readable Explanation"]
     TI --> LLM
     LLM --> EX
-end
-
-%% Maintenance & Workflow Layer
-subgraph L5["Maintenance Agent and Workflow"]
-    MA["Maintenance Decision Agent"]
-    WO["Work Order Generator"]
     FB["Engineer Feedback"]
 end
 
 %% Cross Layer Flow
 SD --> FE
 RE --> DT
-FD --> TI
-EX --> MA
+FD --> MA
+EX --> FB
 MA --> WO
-WO --> FB
+WO --> TI
 FB --> DT
