@@ -1,15 +1,15 @@
-📘 Explainability Agent – FLAN-T5 Large
-Overview
+# Explainability Agent – FLAN-T5 Large
+## Overview
 
 This notebook implements the Explainability Agent for our Industrial IoT Predictive Maintenance system.
 
 The agent uses google/flan-t5-large to convert a deterministic decision trace into a clear, human-readable explanation suitable for maintenance engineers.
 
-⚠️ Important:
+## Important:
 The language model does not make decisions and does not reason over sensor data.
 It only verbalizes already-recorded decision traces.
 
-Purpose of This File
+## Purpose of This File
 
 Translate internal system decisions into engineering-friendly explanations
 
@@ -21,7 +21,7 @@ Demonstrate explainable AI with auditability
 
 This notebook focuses only on explanation generation, not prediction or maintenance actions.
 
-Input
+## Input
 
 The agent consumes a decision trace produced by the reasoning engine.
 
@@ -43,7 +43,7 @@ decision_trace = {
 
 This trace is not passed directly to the LLM.
 
-Humanization Layer
+## Humanization Layer
 
 Before explanation, the decision trace is deterministically translated into a human-safe, quantified representation.
 
@@ -67,7 +67,7 @@ Example output of the humanization step:
   "confidence": "High confidence (82%)."
 }
 
-Explanation Generation
+## Explanation Generation
 
 The FLAN-T5 Large model receives only the human-safe trace and generates a natural language explanation.
 
@@ -81,13 +81,13 @@ No access to system logic or rules
 
 Explanation must reflect cause → effect → conclusion
 
-Output
+## Output
 
 Example generated explanation:
 
 “The machine shows a sustained increase in vibration, reaching a moderate level while operating under a stable load, indicating growing mechanical instability. This is followed by a temperature rise to a higher level, suggesting increased internal friction rather than normal operating variation. Together, these signs are consistent with early-stage bearing wear, and preventive maintenance is recommended.”
 
-Why FLAN-T5 Large?
+## Why FLAN-T5 Large?
 
 Instruction-tuned and stable
 
@@ -107,29 +107,3 @@ What This File Does NOT Do
 ❌ Modify system logic
 
 Those responsibilities belong to other system layers.
-
-Role in Overall System
-Decision Trace Engine
-        ↓
-Humanization Layer (deterministic)
-        ↓
-Explainability Agent (this notebook)
-        ↓
-Maintenance Decision Agent
-
-How to Run
-
-Install dependencies:
-
-pip install transformers torch sentencepiece
-
-
-Open and run flan_t5_large_v1.ipynb
-
-Modify the decision_trace to test different scenarios
-
-Key Design Principle
-
-Decisions are deterministic.
-Explanations are human-centric.
-Language models communicate — they do not control.
