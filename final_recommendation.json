@@ -1,0 +1,9 @@
+{
+  "recommended_action": [
+    "Address EARLY_BEARING_DEGRADATION: Check lubrication levels immediately.",
+    "Schedule bearing replacement within 5\u201310 days if symptoms persist.",
+    "Monitor rapid temperature spike and vibration trends closely."
+  ],
+  "safety_note": "Before inspecting bearings, ensure the machine is powered down and locked out to prevent injury.",
+  "reference": "Bearing_Maintenance_Manual.pdf (Section 4.2 Early Bearing Wear), Vibration Anomaly (Section 4.1), Bearing Degradation (Section 4.2)"
+}

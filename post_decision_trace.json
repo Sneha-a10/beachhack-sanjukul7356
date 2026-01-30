@@ -1,0 +1,41 @@
+{
+    "timestamp": "2026-01-30T22:42:40.971523",
+    "input_trace": {
+        "alert_id": "ALT-1024",
+        "sensor_id": "MTR-55",
+        "timestamp": "2023-10-27T10:00:00Z",
+        "decision": "EARLY_BEARING_DEGRADATION",
+        "final_confidence": 0.82,
+        "rules_triggered": [
+            "VIBRATION_TREND_RULE",
+            "THERMAL_CONFIRMATION_RULE"
+        ],
+        "reasoning_trace": [
+            {
+                "step_id": 1,
+                "rule": "VIBRATION_TREND_RULE",
+                "feature": "vibration_amplitude",
+                "feature_value": 0.61,
+                "threshold": 0.4,
+                "comparison": ">",
+                "rule_result": "FIRED",
+                "confidence_after_step": 0.61,
+                "timestamp": "2023-10-27T09:55:00Z"
+            },
+            {
+                "step_id": 2,
+                "rule": "THERMAL_CONFIRMATION_RULE",
+                "feature": "bearing_temperature",
+                "feature_value": 75.0,
+                "threshold": 60.0,
+                "comparison": ">",
+                "rule_result": "FIRED",
+                "confidence_after_step": 0.82,
+                "timestamp": "2023-10-27T09:58:00Z"
+            }
+        ],
+        "expected_behavior": "stable thermal profile under load",
+        "observed_behavior": "rapid temperature spike",
+        "expectation_mismatch": true
+    }
+}

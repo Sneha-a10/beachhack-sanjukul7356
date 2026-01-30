@@ -1,0 +1,17 @@
+{
+    "id": "chunk_023",
+    "embedding": [
+        0.021,
+        -0.334,
+        0.118,
+        0.904
+    ],
+    "text": "Early bearing degradation is often indicated by increased vibration and moderate temperature rise. Recommended action includes visual inspection, lubrication check, and scheduling replacement within 5–10 days if symptoms persist.",
+    "metadata": {
+        "document": "Bearing_Maintenance_Manual.pdf",
+        "section": "4.2 Early Bearing Wear",
+        "asset_type": "Industrial Motor",
+        "failure_type": "Bearing Degradation",
+        "safety_relevant": true
+    }
+}

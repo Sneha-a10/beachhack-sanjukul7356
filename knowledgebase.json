@@ -1,0 +1,26 @@
+[
+    {
+        "id": "chunk_021",
+        "text": "Excessive vibration without temperature rise may indicate imbalance rather than bearing wear.",
+        "metadata": {
+            "failure_type": "Vibration Anomaly",
+            "section": "4.1"
+        }
+    },
+    {
+        "id": "chunk_023",
+        "text": "Early bearing degradation is often indicated by increased vibration and moderate temperature rise. Recommended action includes inspection and lubrication.",
+        "metadata": {
+            "failure_type": "Bearing Degradation",
+            "section": "4.2"
+        }
+    },
+    {
+        "id": "chunk_031",
+        "text": "Before inspecting bearings, ensure the machine is powered down and locked out to prevent injury.",
+        "metadata": {
+            "failure_type": "Safety Procedure",
+            "section": "2.1"
+        }
+    }
+]
