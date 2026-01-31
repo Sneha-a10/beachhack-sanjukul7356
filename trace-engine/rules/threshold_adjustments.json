@@ -1,0 +1,32 @@
+[
+  {
+    "rule": "COMP_VIB_INSTABILITY",
+    "component": "COMPRESSOR",
+    "feature": "vibration_rms",
+    "old_threshold": 5.5,
+    "new_threshold": 7.44,
+    "rejected_value": 7.09,
+    "timestamp": "2026-02-01T04:46:19.472003",
+    "reason": "User rejected alert - value now considered normal"
+  },
+  {
+    "rule": "COMP_RAPID_WARMING",
+    "component": "COMPRESSOR",
+    "feature": "temperature_delta",
+    "old_threshold": 5.0,
+    "new_threshold": 5.57,
+    "rejected_value": 5.3,
+    "timestamp": "2026-02-01T04:46:19.474754",
+    "reason": "User rejected alert - value now considered normal"
+  },
+  {
+    "rule": "COMP_OVERLOAD",
+    "component": "COMPRESSOR",
+    "feature": "load_avg",
+    "old_threshold": 85.0,
+    "new_threshold": 98.28,
+    "rejected_value": 93.6,
+    "timestamp": "2026-02-01T04:46:19.476177",
+    "reason": "User rejected alert - value now considered normal"
+  }
+]

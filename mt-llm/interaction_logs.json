@@ -140,5 +140,169 @@
         },
         "output_explanation": "Suspend and malfunction with an emergency auxiliary component, which would require the maintenance assistance department. In addition, it can do most job cleaning or other daily operations of this compressor on another's duty with an additional unit. Deplete your operation will likely cause the production operation error to result. Evaporate the air through multiple types: direct-ie in (inside) to another air source at specified amount of pressure and then resume operating the stream between two compressor units. It must occur to complete a normal schedule checking program by starting . Doing maintenance requires continuous inspection with any condition which means schedule it has all available testing for a specific situation and is required until necessary maintenance to find additional solutions for problems. For instance, let alone, keep checking for overflexia. Frequently ask about maintaining its load without unnecessary overload, failure, etc.",
         "user_feedback": "Accepted"
+    },
+    {
+        "timestamp": "2026-02-01T04:45:28.888049",
+        "input_trace": {
+            "alert_id": "alert_c36c48cb",
+            "component_id": "COMPRESSOR",
+            "timestamp": "2026-01-31T21:04:57.364110",
+            "decision": "DANGER",
+            "final_confidence": 1.0,
+            "rules_triggered": [
+                "COMP_VIB_INSTABILITY",
+                "COMP_RAPID_WARMING",
+                "COMP_OVERLOAD"
+            ],
+            "reasoning_trace": [
+                {
+                    "step_id": 1,
+                    "rule": "COMP_VIB_INSTABILITY",
+                    "feature": "vibration_rms",
+                    "feature_value": 7.09,
+                    "threshold": 5.5,
+                    "comparison": ">",
+                    "rule_result": "FIRED",
+                    "confidence_after_step": 0.5,
+                    "timestamp": "2026-01-31T21:04:57.364110"
+                },
+                {
+                    "step_id": 2,
+                    "rule": "COMP_RAPID_WARMING",
+                    "feature": "temperature_delta",
+                    "feature_value": 5.3,
+                    "threshold": 5.0,
+                    "comparison": ">",
+                    "rule_result": "FIRED",
+                    "confidence_after_step": 0.7,
+                    "timestamp": "2026-01-31T21:04:57.364110"
+                },
+                {
+                    "step_id": 3,
+                    "rule": "COMP_OVERLOAD",
+                    "feature": "load_avg",
+                    "feature_value": 93.6,
+                    "threshold": 85.0,
+                    "comparison": ">",
+                    "rule_result": "FIRED",
+                    "confidence_after_step": 1.0,
+                    "timestamp": "2026-01-31T21:04:57.364110"
+                }
+            ],
+            "expected_behavior": "NORMAL",
+            "observed_behavior": "DEGRADING",
+            "expectation_mismatch": true
+        },
+        "output_explanation": "Test explanation for threshold adjustment verification",
+        "user_feedback": "Rejected"
+    },
+    {
+        "timestamp": "2026-02-01T04:45:55.570454",
+        "input_trace": {
+            "alert_id": "alert_c36c48cb",
+            "component_id": "COMPRESSOR",
+            "timestamp": "2026-01-31T21:04:57.364110",
+            "decision": "DANGER",
+            "final_confidence": 1.0,
+            "rules_triggered": [
+                "COMP_VIB_INSTABILITY",
+                "COMP_RAPID_WARMING",
+                "COMP_OVERLOAD"
+            ],
+            "reasoning_trace": [
+                {
+                    "step_id": 1,
+                    "rule": "COMP_VIB_INSTABILITY",
+                    "feature": "vibration_rms",
+                    "feature_value": 7.09,
+                    "threshold": 5.5,
+                    "comparison": ">",
+                    "rule_result": "FIRED",
+                    "confidence_after_step": 0.5,
+                    "timestamp": "2026-01-31T21:04:57.364110"
+                },
+                {
+                    "step_id": 2,
+                    "rule": "COMP_RAPID_WARMING",
+                    "feature": "temperature_delta",
+                    "feature_value": 5.3,
+                    "threshold": 5.0,
+                    "comparison": ">",
+                    "rule_result": "FIRED",
+                    "confidence_after_step": 0.7,
+                    "timestamp": "2026-01-31T21:04:57.364110"
+                },
+                {
+                    "step_id": 3,
+                    "rule": "COMP_OVERLOAD",
+                    "feature": "load_avg",
+                    "feature_value": 93.6,
+                    "threshold": 85.0,
+                    "comparison": ">",
+                    "rule_result": "FIRED",
+                    "confidence_after_step": 1.0,
+                    "timestamp": "2026-01-31T21:04:57.364110"
+                }
+            ],
+            "expected_behavior": "NORMAL",
+            "observed_behavior": "DEGRADING",
+            "expectation_mismatch": true
+        },
+        "output_explanation": "Test explanation for threshold adjustment verification",
+        "user_feedback": "Rejected"
+    },
+    {
+        "timestamp": "2026-02-01T04:55:14.275990",
+        "input_trace": {
+            "recommended_action": [
+                "fallback"
+            ],
+            "safety_note": "Standard safety protocols apply.",
+            "reference": "None"
+        },
+        "output_explanation": "The fallback is a short-lived injury that can occur in the form of an injured or broken leg. This may include: if you have been hurt in a crash, your knees should be resting on the ground and not falling back.",
+        "user_feedback": "Generated"
+    },
+    {
+        "timestamp": "2026-02-01T04:55:45.451021",
+        "input_trace": {
+            "recommended_action": [
+                "Condition: Elevated compressor discharge temperature indicating compression inefficiency, cooling degradation, or valve leakage. Actions: Inspect cooling system; verify discharge pressure conditions; inspect compressor valves; monitor temperature trend.",
+                "Condition: High vibration instability indicating bearing damage, rotor imbalance, or internal mechanical faults. Actions: Inspect bearings and rotor alignment; verify foundation stability; reduce operating speed if possible; schedule corrective maintenance.",
+                "Condition: Rapid compressor temperature rise indicating lubrication failure, friction escalation, or abnormal compression behavior. Actions: Verify lubrication flow immediately; inspect cooling effectiveness; reduce load and monitor closely."
+            ],
+            "safety_note": "Verified from internal knowledge base.",
+            "reference": "Internal Knowledge Base"
+        },
+        "output_explanation": "lubrication is the process of cooling and decomposition of air. This means that the temperature of the compressor increases immediately. The rate of cooling is also increasing. The average load is approximately 135 tons per hour. The maximum load is about 325 tons per hour.",
+        "user_feedback": "Generated"
+    },
+    {
+        "timestamp": "2026-02-01T04:55:46.304373",
+        "input_trace": {
+            "recommended_action": [
+                "Condition: Elevated compressor discharge temperature indicating compression inefficiency, cooling degradation, or valve leakage. Actions: Inspect cooling system; verify discharge pressure conditions; inspect compressor valves; monitor temperature trend.",
+                "Condition: High vibration instability indicating bearing damage, rotor imbalance, or internal mechanical faults. Actions: Inspect bearings and rotor alignment; verify foundation stability; reduce operating speed if possible; schedule corrective maintenance.",
+                "Condition: Rapid compressor temperature rise indicating lubrication failure, friction escalation, or abnormal compression behavior. Actions: Verify lubrication flow immediately; inspect cooling effectiveness; reduce load and monitor closely."
+            ],
+            "safety_note": "Verified from internal knowledge base.",
+            "reference": "Internal Knowledge Base"
+        },
+        "output_explanation": "lubrication is the process of cooling and decomposition of air. The temperature of the compressor increases when it receives high pressure, which causes the load to increase. This means that the rate of cooling is lower than normal. The average speed of the cooling system is 30 degrees Fahrenheit (15.0 Celsius).",
+        "user_feedback": "Generated"
+    },
+    {
+        "timestamp": "2026-02-01T04:55:49.214541",
+        "input_trace": {
+            "recommended_action": [
+                "Condition: Elevated compressor discharge temperature indicating compression inefficiency, cooling degradation, or valve leakage. Actions: Inspect cooling system; verify discharge pressure conditions; inspect compressor valves; monitor temperature trend.",
+                "Condition: High vibration instability indicating bearing damage, rotor imbalance, or internal mechanical faults. Actions: Inspect bearings and rotor alignment; verify foundation stability; reduce operating speed if possible; schedule corrective maintenance.",
+                "Condition: Rapid compressor temperature rise indicating lubrication failure, friction escalation, or abnormal compression behavior. Actions: Verify lubrication flow immediately; inspect cooling effectiveness; reduce load and monitor closely."
+            ],
+            "safety_note": "Verified from internal knowledge base.",
+            "reference": "Internal Knowledge Base"
+        },
+        "output_explanation": "The lubrication flow is measured by the compressor temperature. This means that the cooling efficiency of the air conditioner will be reduced. The pressure in the air conditioner should not exceed the load and it must also increase to prevent damage to the engine.",
+        "user_feedback": "Generated"
     }
 ]

@@ -1,8 +1,12 @@
 import json
 import datetime
 import os
+import sys
 import torch
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+
+# Add trace-engine to path for threshold adjuster
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'trace-engine'))
 
 # Constants
 MODEL_NAME = "google/flan-t5-small"
@@ -253,6 +257,43 @@ def main():
             elif choice in ['2', 'reject']:
                 print("\nFeedback: Rejected")
                 explainer.log_interaction(decision_trace, explanation, user_feedback="Rejected")
+                
+                # Trigger threshold adjustment
+                print("\n" + "="*50)
+                print("Processing Threshold Adjustment...")
+                print("="*50)
+                
+                try:
+                    from rules.threshold_adjuster import ThresholdAdjuster
+                    
+                    # Setup paths
+                    trace_path = os.path.join("knowledge_base", "post_decision_trace.json")
+                    logs_path = LOG_FILE
+                    
+                    # Run adjuster
+                    adjuster = ThresholdAdjuster(trace_path, logs_path)
+                    adjustments_made = adjuster.process_rejection()
+                    
+                    if adjustments_made:
+                        adjuster.save_changes()
+                        audit_data = adjuster.get_audit_data()
+                        
+                        # Update final_recommendation.json with audit trail
+                        if os.path.exists(INPUT_FILE):
+                            with open(INPUT_FILE, 'r') as f:
+                                final_rec = json.load(f)
+                            
+                            final_rec["threshold_adjustments"] = audit_data
+                            
+                            with open(INPUT_FILE, 'w') as f:
+                                json.dump(final_rec, f, indent=2)
+                            
+                            print(f"\n✅ Threshold adjustments added to {INPUT_FILE}")
+                    
+                except Exception as e:
+                    print(f"\n⚠ Error during threshold adjustment: {e}")
+                    print("Continuing without threshold adjustment...")
+                
                 break
             else:
                 print("Invalid choice. Please enter 1 or 2.")

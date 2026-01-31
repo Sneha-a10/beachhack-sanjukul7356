@@ -1,48 +1,48 @@
 {
     "input_trace": {
-        "alert_id": "alert_c36c48cb",
+        "alert_id": "alert_3f742bc4",
         "component_id": "COMPRESSOR",
-        "timestamp": "2026-01-31T21:04:57.364110",
+        "timestamp": "2026-01-31T23:24:14.631293",
         "decision": "DANGER",
-        "final_confidence": 1.0,
+        "final_confidence": 0.9,
         "rules_triggered": [
+            "COMP_DISCHARGE_TEMP",
             "COMP_VIB_INSTABILITY",
-            "COMP_RAPID_WARMING",
-            "COMP_OVERLOAD"
+            "COMP_RAPID_WARMING"
         ],
         "reasoning_trace": [
             {
                 "step_id": 1,
-                "rule": "COMP_VIB_INSTABILITY",
-                "feature": "vibration_rms",
-                "feature_value": 7.09,
-                "threshold": 5.5,
+                "rule": "COMP_DISCHARGE_TEMP",
+                "feature": "temperature_c",
+                "feature_value": 50.6,
+                "threshold": 50.0,
                 "comparison": ">",
                 "rule_result": "FIRED",
-                "confidence_after_step": 0.5,
-                "timestamp": "2026-01-31T21:04:57.364110"
+                "confidence_after_step": 0.2,
+                "timestamp": "2026-01-31T23:24:14.631293"
             },
             {
                 "step_id": 2,
-                "rule": "COMP_RAPID_WARMING",
-                "feature": "temperature_delta",
-                "feature_value": 5.3,
-                "threshold": 5.0,
+                "rule": "COMP_VIB_INSTABILITY",
+                "feature": "vibration_rms",
+                "feature_value": 10.44,
+                "threshold": 7.44,
                 "comparison": ">",
                 "rule_result": "FIRED",
                 "confidence_after_step": 0.7,
-                "timestamp": "2026-01-31T21:04:57.364110"
+                "timestamp": "2026-01-31T23:24:14.631293"
             },
             {
                 "step_id": 3,
-                "rule": "COMP_OVERLOAD",
-                "feature": "load_avg",
-                "feature_value": 93.6,
-                "threshold": 85.0,
+                "rule": "COMP_RAPID_WARMING",
+                "feature": "temperature_delta",
+                "feature_value": 6.8,
+                "threshold": 5.57,
                 "comparison": ">",
                 "rule_result": "FIRED",
-                "confidence_after_step": 1.0,
-                "timestamp": "2026-01-31T21:04:57.364110"
+                "confidence_after_step": 0.9,
+                "timestamp": "2026-01-31T23:24:14.631293"
             }
         ],
         "expected_behavior": "NORMAL",
