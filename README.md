@@ -29,18 +29,19 @@ graph TD
     C{"Knowledge Retrieval"}
     style C fill:#ffd,stroke:#333,stroke-width:2px
     
+
     D["Requestly Mock Server<br>(http://dummy.local/retrieve)"]
     style D fill:#dfd,stroke:#333,stroke-width:2px
-    
+
     E{"Decision Engine"}
     style E fill:#fdd,stroke:#333,stroke-width:2px
-    
+
     F["Groq API<br>(Llama-3.3-70b)"]
     style F fill:#eef,stroke:#333,stroke-width:2px
-    
+
     G["Fallback Logic<br>(Simulated)"]
     style G fill:#eee,stroke:#333,stroke-width:2px
-    
+
     H[("Final Output<br>(final_recommendation.json)")]
     style H fill:#9f9,stroke:#333,stroke-width:2px
 
