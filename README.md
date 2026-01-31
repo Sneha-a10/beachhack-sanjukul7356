@@ -1,185 +1,132 @@
-# 🏭 Explainable Predictive Maintenance System  
-## Decision‑Trace–First Architecture with Maintenance Agent
-
----
+# 🏭 Explainable Predictive Maintenance System
 
 ## 📌 Project Overview
 
-Industrial machines generate massive sensor data, yet maintenance decisions are still
-- distrusted,
-- delayed,
-- and poorly explained.
+This project implements a **trace-first predictive maintenance system** designed to solve the "black box" problem in industrial AI. Instead of just outputting an alert, this system:
+1.  **Captures the decision trace**: Records *why* an alert was triggered.
+2.  **Retrieves context**: Uses a RAG (Retrieval-Augmented Generation) pattern to find relevant maintenance manuals and historical data.
+3.  **Generates actionable advice**: Uses an LLM (or structured fallback) to convert the trace and context into specific, safe maintenance instructions.
 
-Most predictive maintenance systems fail **not because predictions are wrong**, but because:
-- engineers cannot see *how* decisions were made,
-- system logic cannot be audited,
-- alerts do not translate into clear actions.
-
-This project solves that problem by building a **trace‑first predictive maintenance system**
-where **every decision is recorded, explained, and acted upon**.
-
-> **Core philosophy:**  
-> *If a system cannot show how it reasoned, it should not be trusted.*
+The core philosophy is: **If a system cannot show how it reasoned, it should not be trusted.**
 
 ---
 
-## 🎯 Problem Statement
+## 🏗️ System Architecture & Pipeline
 
-Existing predictive maintenance solutions suffer from:
+The system operates in a linear pipeline from Alert Generation to Final Recommendation.
 
-- ❌ Black‑box AI alerts
-- ❌ Logical mismatch between expected and real outcomes
-- ❌ Alert fatigue due to poor explanations
-- ❌ No direct path from alert → maintenance action
-
-Our solution focuses on:
-- **decision transparency**
-- **logical correctness**
-- **human trust**
-- **workflow integration**
-
----
-
-## 🧠 Core Idea: Decision Trace First
-
-Explainability is **not added later** in this system.  
-The architecture is built around a **Decision Trace Engine** that records *how* every decision is made.
-
-For every alert, the system explicitly records:
-- what was evaluated,
-- which rules were checked and triggered,
-- how risk evolved step by step,
-- why the final decision occurred.
-
-All other components — explanations, maintenance actions, and learning — are built **on top of this decision trace**.
-
----
-
-### 🔍 Why Decision Trace (and Why Not Traditional XAI)
-
-Most explainable AI (XAI) techniques attempt to explain a decision **after it has already happened**.  
-While useful for understanding model behavior, they are not sufficient for **industrial decision systems** where trust, auditability, and actionability are critical.
-
-This project uses a **Decision Trace–first approach** for the following reasons.
-
----
-
-### ✅ Why Decision Trace
-
-- **Execution‑based explainability**  
-  The Decision Trace records the *actual reasoning path* taken by the system, step by step, instead of approximating it after the fact.
-
-- **Deterministic and replayable**  
-  Given the same inputs, the system produces the same trace.  
-  This allows decisions to be:
-  - replayed,
-  - audited,
-  - debugged.
-
-- **Captures logic, not just correlations**  
-  Industrial systems rely on rules, thresholds, and workflows.  
-  Decision traces explicitly capture:
-  - which rules were evaluated,
-  - which rules fired,
-  - how confidence and risk evolved.
-
-- **Directly exposes logical errors**  
-  When the system’s expected outcome does not match real‑world behavior, the trace shows *where the reasoning diverged*, instead of hiding the mistake.
-
-- **Single source of truth**  
-  Explanations, maintenance actions, and feedback all reference the same trace, ensuring consistency across the system.
-
----
-
-### ❌ Why Not Traditional XAI (Alone)
-
-- **Post‑hoc, not causal**  
-  Traditional XAI explains *what influenced* a decision, not *how the decision was actually made*.
-
-- **Approximate by nature**  
-  Feature attribution methods estimate influence; they do not record execution steps.
-
-- **Limited auditability**  
-  XAI does not naturally capture:
-  - rule sequences,
-  - intermediate reasoning states,
-  - workflow logic.
-
-- **Weak actionability**  
-  Knowing which feature mattered most does not explain:
-  - why a maintenance action was chosen,
-  - or why it was triggered at that specific time.
-
----
-
-### 🧩 Final Design Choice
-
-> **Decision Traces serve as the ground truth for system reasoning.  
-Explainability models are used only to translate these traces into human‑understandable language.**
-
-This makes the system:
-- transparent,
-- auditable,
-- trustworthy,
-- and suitable for real industrial deployment.
-
----
-
-## 🏗️ Full Architecture Overview
-
-### Top‑Level Flow
+### 🔄 Data Flow Pipeline
 
 ```mermaid
-flowchart TD
+graph TD
+    %% Nodes
+    A[("Alert Trace Input<br>(post_decision_trace.json)")] 
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    
+    B["Workflow Orchestrator<br>(process_alert_workflow.py)"]
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    
+    C{"Knowledge Retrieval"}
+    style C fill:#ffd,stroke:#333,stroke-width:2px
+    
+    D["Requestly Mock Server<br>(http://dummy.local/retrieve)"]
+    style D fill:#dfd,stroke:#333,stroke-width:2px
+    
+    E{"Decision Engine"}
+    style E fill:#fdd,stroke:#333,stroke-width:2px
+    
+    F["Groq API<br>(Llama-3.3-70b)"]
+    style F fill:#eef,stroke:#333,stroke-width:2px
+    
+    G["Fallback Logic<br>(Simulated)"]
+    style G fill:#eee,stroke:#333,stroke-width:2px
+    
+    H[("Final Output<br>(final_recommendation.json)")]
+    style H fill:#9f9,stroke:#333,stroke-width:2px
 
-%% Sensor & Data Reality Layer
-subgraph L1["Sensor & Data Reality Layer"]
-    S1["Sensor 1: Vibration"]
-    S2["Sensor 2: Temperature"]
-    S3["Sensor 3: Load"]
-    SD["Sensor Data Stream"]
-    S1 --> SD
-    S2 --> SD
-    S3 --> SD
-end
+    %% Edges
+    A -->|1. Load Alert Data| B
+    B -->|2. Extract Decision & Behavior| C
+    C -->|3. API Call| D
+    D -->|4. Return Context/Manuals| B
+    B -->|5. Combine Alert + Context| E
+    E -->|If GROQ_API_KEY exists| F
+    E -->|If No Key| G
+    F -->|6. Generate Natural Language| H
+    G -->|6. Generate Structured JSON| H
+```
 
-%% Reasoning Engine
-subgraph L2["Reasoning Engine"]
-    FE["Feature Extraction"]
-    RE["Deterministic Reasoning"]
-    FE --> RE
-end
+---
 
-%% Decision Trace Engine
-subgraph L3["Decision Trace Engine"]
-    DT["Decision Trace Builder"]
-    FD["Final Decision and Confidence"]
-    JS["Decision Trace Stored as JSON"]
-    DT --> FD
-    DT --> JS
-end
+## 📂 File Structure & Responsibilities
 
-%% Explainability Layer
-subgraph L4["Explainability Agent Layer"]
-    TI["Trace Ingestion"]
-    LLM["Explainability LLM"]
-    EX["Human Readable Explanation"]
-    TI --> LLM
-    LLM --> EX
-end
+| File Name | Responsibility |
+| :--- | :--- |
+| **`process_alert_workflow.py`** | **The Main Engine.** Orchestrates the entire flow: reads the alert, calls the retrieval API, prompts the LLM, and saves the result. |
+| **`post_decision_trace.json`** | **Input.** The "black box" alert trace. Contains the `decision` (e.g., "Early Bearing Degradation") and `observed_behavior`. |
+| **`final_recommendation.json`** | **Output.** The final, actionable JSON containing recommended actions, safety notes, and references. |
+| **`requestly_mock_rules.md`** | **Retrieval Logic.** Defines the rules for `Requestly` to intercept the dummy API call and return specific knowledge chunks. |
+| **`requestly_export.json`** | **Mock Data.** The importable configuration for Requestly to simulate the knowledge base API. |
+| **`maintenance_chunks.json`** | **Knowledge Base.** Chunks of text from maintenance manuals used for retrieval. |
+| **`vectorDB.json`** | **Index.** Metadata used to map alerts to specific knowledge chunks (simulated vector store). |
 
-%% Maintenance & Workflow Layer
-subgraph L5["Maintenance Agent and Workflow"]
-    MA["Maintenance Decision Agent"]
-    WO["Work Order Generator"]
-    FB["Engineer Feedback"]
-end
+---
 
-%% Cross Layer Flow
-SD --> FE
-RE --> DT
-FD --> TI
-EX --> MA
-MA --> WO
-WO --> FB
-FB --> DT
+## 🚀 How to Run the System
+
+### Prerequisites
+- Python 3.8+
+- [Requestly Desktop App](https://requestly.io/) (for mocking the API)
+- A Groq API Key (Optional, for LLM generation)
+
+### Step-by-Step Execution
+
+1.  **Prepare the Input Trace**:
+    Ensure `post_decision_trace.json` contains the latest alert data.
+    ```json
+    {
+      "input_trace": {
+        "decision": "EARLY_BEARING_DEGRADATION",
+        "observed_behavior": "rapid temperature spike"
+      }
+    }
+    ```
+
+2.  **Setup Requestly Mock** (Crucial Step):
+    *   Open Requestly.
+    *   Import `requestly_export.json` OR manually set up a rule to redirect `http://dummy.local/retrieve` to return valid JSON context.
+    *   Ensure the Requestly system proxy is active.
+
+3.  **Run the Workflow**:
+    ```bash
+    # Set your API key (optional)
+    $env:GROQ_API_KEY="your_api_key_here" 
+
+    # Execute the script
+    python process_alert_workflow.py
+    ```
+
+4.  **View Results**:
+    Open `final_recommendation.json` to see the generated maintenance advice.
+
+    **Example Output:**
+    ```json
+    {
+      "recommended_action": [
+        "Check lubrication levels immediately.",
+        "Schedule bearing replacement within 5–10 days."
+      ],
+      "safety_note": "Ensure power is isolated before inspection.",
+      "reference": "Internal Knowledge Base"
+    }
+    ```
+
+---
+
+## 🧠 Decision Trace Philosophy
+
+The system is built on the idea that **explainability must be intrinsic, not post-hoc**.
+*   **Traditional AI**: Makes a guess -> Explainability tool tries to guess why.
+*   **This System**: Records the logic path -> Retrieval simply adds context to that proven path.
+
+This ensures that `final_recommendation.json` is always mathematically consistent with the input `post_decision_trace.json`.
