@@ -1,0 +1,130 @@
+[
+    {
+        "id": "chunk_01",
+        "embedding": [
+            0.02,
+            -0.33,
+            0.11,
+            0.90
+        ],
+        "text": "Early bearing degradation requires inspection of bearing housing, lubrication check, alignment verification, and preventive maintenance within 5–10 operating days.",
+        "metadata": {
+            "failure_type": "EARLY_BEARING_DEGRADATION",
+            "section": "Mock_Rule_1",
+            "urgency": "Medium",
+            "source": "Predictive Maintenance Knowledge Base.pdf"
+        }
+    },
+    {
+        "id": "chunk_02",
+        "embedding": [
+            0.02,
+            -0.33,
+            0.11,
+            0.90
+        ],
+        "text": "Sustained vibration without temperature rise may indicate imbalance or loose mounting. Immediate shutdown is not required. Inspect mounting bolts, base, and verify shaft alignment.",
+        "metadata": {
+            "failure_type": "VIBRATION_ONLY",
+            "section": "Mock_Rule_2",
+            "urgency": "Low",
+            "source": "Predictive Maintenance Knowledge Base.pdf"
+        }
+    },
+    {
+        "id": "chunk_03",
+        "embedding": [
+            0.02,
+            -0.33,
+            0.11,
+            0.90
+        ],
+        "text": "Combined vibration and temperature increase indicates confirmed mechanical degradation. Schedule maintenance during planned downtime. Prepare spare components if available.",
+        "metadata": {
+            "failure_type": "VIBRATION_AND_TEMPERATURE",
+            "section": "Mock_Rule_3",
+            "urgency": "Medium",
+            "source": "Predictive Maintenance Knowledge Base.pdf"
+        }
+    },
+    {
+        "id": "chunk_04",
+        "embedding": [
+            0.02,
+            -0.33,
+            0.11,
+            0.90
+        ],
+        "text": "Gradual temperature rise without vibration may indicate lubrication degradation or cooling inefficiency. Inspect lubrication pathways, verify cooling airflow, and check temperature sensor calibration.",
+        "metadata": {
+            "failure_type": "TEMPERATURE_ONLY",
+            "section": "Mock_Rule_4",
+            "urgency": "Medium",
+            "source": "Predictive Maintenance Knowledge Base.pdf"
+        }
+    },
+    {
+        "id": "chunk_05",
+        "embedding": [
+            0.02,
+            -0.33,
+            0.11,
+            0.90
+        ],
+        "text": "Irregular vibration and moderate temperature rise in reciprocating compressors requires inspection of piston and bearing assemblies, lubrication flow verification, and valve clearance inspection.",
+        "metadata": {
+            "failure_type": "RECIP_COMPRESSOR_EARLY",
+            "section": "Mock_Rule_5",
+            "urgency": "Medium",
+            "source": "Predictive Maintenance Knowledge Base.pdf"
+        }
+    },
+    {
+        "id": "chunk_06",
+        "embedding": [
+            0.02,
+            -0.33,
+            0.11,
+            0.90
+        ],
+        "text": "Sudden step changes or conflicting signals suggests sensor error. Validate sensor readings and cross-check with secondary sensors. Do not escalate maintenance prematurely.",
+        "metadata": {
+            "failure_type": "SENSOR_INCONSISTENCY",
+            "section": "Mock_Rule_6",
+            "urgency": "Low",
+            "source": "Predictive Maintenance Knowledge Base.pdf"
+        }
+    },
+    {
+        "id": "chunk_07",
+        "embedding": [
+            0.02,
+            -0.33,
+            0.11,
+            0.90
+        ],
+        "text": "Confirmed progression of degradation requires component replacement. Immediate intervention may be necessary if trend accelerates.",
+        "metadata": {
+            "failure_type": "CONFIRMED_PROGRESSION",
+            "section": "Mock_Rule_7",
+            "urgency": "High",
+            "source": "Predictive Maintenance Knowledge Base.pdf"
+        }
+    },
+    {
+        "id": "chunk_08",
+        "embedding": [
+            0.02,
+            -0.33,
+            0.11,
+            0.90
+        ],
+        "text": "Before any inspection or maintenance activity, ensure power isolation, lock-out/tag-out procedures, and appropriate PPE usage.",
+        "metadata": {
+            "failure_type": "GLOBAL_SAFETY",
+            "section": "Mock_Rule_8",
+            "urgency": "High",
+            "source": "Predictive Maintenance Knowledge Base.pdf"
+        }
+    }
+]

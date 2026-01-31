@@ -1,0 +1,50 @@
+[
+    {
+        "timestamp": "2026-01-30T18:00:00Z",
+        "component": "PUMP",
+        "features": {
+            "vibration_rms": 2.1,
+            "vibration_trend": 0.1,
+            "vibration_delta": 0.2,
+            "temperature_c": 55.0,
+            "temperature_delta": 1.0,
+            "load_avg": 40.0
+        }
+    },
+    {
+        "timestamp": "2026-01-30T18:01:00Z",
+        "component": "PUMP",
+        "features": {
+            "vibration_rms": 4.2,
+            "vibration_trend": 0.6,
+            "vibration_delta": 0.9,
+            "temperature_c": 70.0,
+            "temperature_delta": 3.0,
+            "load_avg": 75.0
+        }
+    },
+    {
+        "timestamp": "2026-01-30T18:02:00Z",
+        "component": "COMPRESSOR",
+        "features": {
+            "vibration_rms": 6.0,
+            "vibration_trend": 1.2,
+            "vibration_delta": 1.5,
+            "temperature_c": 112.0,
+            "temperature_delta": 9.5,
+            "load_avg": 92.0
+        }
+    },
+    {
+        "timestamp": "2026-01-30T18:03:00Z",
+        "component": "CONVEYOR",
+        "features": {
+            "vibration_rms": 5.8,
+            "vibration_trend": 1.8,
+            "vibration_delta": 1.1,
+            "temperature_c": 85.0,
+            "temperature_delta": 6.0,
+            "load_avg": 96.0
+        }
+    }
+]

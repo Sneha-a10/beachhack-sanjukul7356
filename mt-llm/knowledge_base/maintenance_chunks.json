@@ -1,0 +1,158 @@
+[
+  {
+    "chunk_id": "DOC_OVERVIEW",
+    "chunk_type": "document",
+    "asset_type": "global",
+    "rule_id": null,
+    "urgency": null,
+    "text": "This knowledge base provides standardized, rule-driven maintenance actions for industrial assets based on pre-evaluated system rules. It is intended for retrieval-only maintenance agents that do not infer, reason, or override system decisions. All rule evaluation and confidence computation occur upstream."
+  },
+  {
+    "chunk_id": "DOC_ASSET_SCOPE",
+    "chunk_type": "document",
+    "asset_type": "global",
+    "rule_id": null,
+    "urgency": null,
+    "text": "Assets covered include industrial pumps, conveyor systems, and industrial compressors. Out of scope items include emergency shutdown procedures, design-level failures, and operator safety incidents."
+  },
+  {
+    "chunk_id": "DOC_MAINTENANCE_PHILOSOPHY",
+    "chunk_type": "policy",
+    "asset_type": "global",
+    "rule_id": null,
+    "urgency": null,
+    "text": "Each maintenance rule maps to a specific condition, a deterministic action set, and a clear urgency level. Urgency levels are defined as Low (observe and monitor), Medium (inspect and plan), High (schedule corrective action), and Critical (immediate intervention required)."
+  },
+
+  {
+    "chunk_id": "RULE_PUMP_VIBRATION_CRITICAL",
+    "chunk_type": "rule",
+    "asset_type": "pump",
+    "rule_id": "PUMP_VIBRATION_CRITICAL",
+    "urgency": "high",
+    "text": "Condition: Excessive vibration levels during pump operation indicating bearing wear, shaft misalignment, or mechanical imbalance. Actions: Inspect pump bearings for wear or damage; verify shaft alignment and coupling condition; check foundation bolts and mounting rigidity; reduce operating load if possible; schedule corrective maintenance immediately. Continued operation is allowed only with close monitoring. Do not escalate immediately if the event is a single short-duration spike, if bearings were recently replaced, or if sensor mounting instability is detected."
+  },
+  {
+    "chunk_id": "RULE_PUMP_TEMP_SPIKE",
+    "chunk_type": "rule",
+    "asset_type": "pump",
+    "rule_id": "PUMP_TEMP_SPIKE",
+    "urgency": "medium",
+    "text": "Condition: Rapid temperature increase indicating lubrication flow issues, cooling inefficiency, or friction buildup. Actions: Inspect lubrication supply and quality; verify cooling water or airflow availability; check for blockages or restricted flow paths; monitor temperature trend over the next operational cycles."
+  },
+  {
+    "chunk_id": "RULE_PUMP_OVERHEAT",
+    "chunk_type": "rule",
+    "asset_type": "pump",
+    "rule_id": "PUMP_OVERHEAT",
+    "urgency": "critical",
+    "text": "Condition: Sustained pump temperature exceeding safe operating limits, indicating severe lubrication failure, internal friction, or imminent component damage. Actions: Reduce pump load immediately; inspect internal components; verify lubrication system integrity; prepare for controlled shutdown if elevated temperature persists."
+  },
+  {
+    "chunk_id": "RULE_PUMP_HIGH_LOAD",
+    "chunk_type": "rule",
+    "asset_type": "pump",
+    "rule_id": "PUMP_HIGH_LOAD",
+    "urgency": "medium",
+    "text": "Condition: Consistently high operating load indicating flow restriction, downstream blockage, or incorrect operating point. Actions: Inspect discharge and suction lines; check for valve restrictions; verify operating parameters against design specifications; monitor load trend over time."
+  },
+
+  {
+    "chunk_id": "RULE_CONVEYOR_VIB_TRENDING",
+    "chunk_type": "rule",
+    "asset_type": "conveyor",
+    "rule_id": "CONVEYOR_VIB_TRENDING",
+    "urgency": "medium",
+    "text": "Condition: Gradual increase in conveyor vibration indicating roller wear, belt misalignment, or structural looseness. Actions: Inspect conveyor rollers and bearings; verify belt alignment and tension; tighten structural fasteners; continue monitoring vibration trend."
+  },
+  {
+    "chunk_id": "RULE_CONVEYOR_MOTOR_HEAT",
+    "chunk_type": "rule",
+    "asset_type": "conveyor",
+    "rule_id": "CONVEYOR_MOTOR_HEAT",
+    "urgency": "medium",
+    "text": "Condition: Elevated conveyor motor temperature indicating overload conditions, cooling obstruction, or motor insulation stress. Actions: Inspect motor cooling system; verify load conditions; check ventilation pathways; monitor temperature stability."
+  },
+  {
+    "chunk_id": "RULE_CONVEYOR_LOAD_PEAK",
+    "chunk_type": "rule",
+    "asset_type": "conveyor",
+    "rule_id": "CONVEYOR_LOAD_PEAK",
+    "urgency": "medium",
+    "text": "Condition: High load peaks indicating material accumulation, belt slippage, or increased mechanical resistance. Actions: Inspect conveyor for material buildup; check belt tension and condition; verify motor and gearbox coupling; reduce throughput temporarily if required."
+  },
+  {
+    "chunk_id": "RULE_CONVEYOR_VIB_SPIKE",
+    "chunk_type": "rule",
+    "asset_type": "conveyor",
+    "rule_id": "CONVEYOR_VIB_SPIKE",
+    "urgency": "high",
+    "text": "Condition: Sudden vibration spikes indicating foreign object intrusion, belt impact events, or roller seizure. Actions: Inspect conveyor path immediately; remove obstructions if present; inspect rollers for seizure; resume operation only after clearance."
+  },
+
+  {
+    "chunk_id": "RULE_COMP_DISCHARGE_TEMP",
+    "chunk_type": "rule",
+    "asset_type": "compressor",
+    "rule_id": "COMP_DISCHARGE_TEMP",
+    "urgency": "medium",
+    "text": "Condition: Elevated compressor discharge temperature indicating compression inefficiency, cooling degradation, or valve leakage. Actions: Inspect cooling system; verify discharge pressure conditions; inspect compressor valves; monitor temperature trend."
+  },
+  {
+    "chunk_id": "RULE_COMP_VIB_INSTABILITY",
+    "chunk_type": "rule",
+    "asset_type": "compressor",
+    "rule_id": "COMP_VIB_INSTABILITY",
+    "urgency": "high",
+    "text": "Condition: High vibration instability indicating bearing damage, rotor imbalance, or internal mechanical faults. Actions: Inspect bearings and rotor alignment; verify foundation stability; reduce operating speed if possible; schedule corrective maintenance."
+  },
+  {
+    "chunk_id": "RULE_COMP_RAPID_WARMING",
+    "chunk_type": "rule",
+    "asset_type": "compressor",
+    "rule_id": "COMP_RAPID_WARMING",
+    "urgency": "medium",
+    "text": "Condition: Rapid compressor temperature rise indicating lubrication failure, friction escalation, or abnormal compression behavior. Actions: Verify lubrication flow immediately; inspect cooling effectiveness; reduce load and monitor closely."
+  },
+  {
+    "chunk_id": "RULE_COMP_OVERLOAD",
+    "chunk_type": "rule",
+    "asset_type": "compressor",
+    "rule_id": "COMP_OVERLOAD",
+    "urgency": "high",
+    "text": "Condition: Sustained compressor overload indicating excessive demand, downstream restriction, or control system mismatch. Actions: Inspect discharge line restrictions; verify control settings; reduce operating load; schedule system inspection."
+  },
+
+  {
+    "chunk_id": "POLICY_SENSOR_INCONSISTENCY",
+    "chunk_type": "policy",
+    "asset_type": "global",
+    "rule_id": null,
+    "urgency": null,
+    "text": "If conflicting or abnormal sensor readings occur, validate sensor calibration, check sensor mounting integrity, cross-verify readings with secondary sensors, and do not escalate mechanical maintenance prematurely."
+  },
+  {
+    "chunk_id": "POLICY_SAFETY_GUIDELINES",
+    "chunk_type": "policy",
+    "asset_type": "global",
+    "rule_id": null,
+    "urgency": "critical",
+    "text": "Before inspection or maintenance activities, isolate the power supply, follow lock-out and tag-out procedures, wear appropriate personal protective equipment, and do not bypass safety interlocks."
+  },
+  {
+    "chunk_id": "POLICY_LIMITATIONS",
+    "chunk_type": "policy",
+    "asset_type": "global",
+    "rule_id": null,
+    "urgency": null,
+    "text": "This knowledge base provides advisory guidance only. Final maintenance decisions rest with qualified engineers. Site-specific operating conditions may require deviation from documented actions."
+  },
+  {
+    "chunk_id": "DOC_CLOSING_STATEMENT",
+    "chunk_type": "document",
+    "asset_type": "global",
+    "rule_id": null,
+    "urgency": null,
+    "text": "This knowledge base ensures deterministic maintenance actions, zero hallucination, and audit-ready operational guidance. It supports execution and retrieval, not decision-making."
+  }
+]
