@@ -28,7 +28,7 @@ class FeatureExtractor:
         else:
             raise ValueError(f"Unsupported format: {path.suffix}")
 
-        required = {'timestamp', 'asset_id', 'vibration_rms', 'temperature_c', 'load_percent'}
+        required = {'timestamp', 'asset_id', 'vibration_rms', 'temperature_c', 'load_percent', 'failure_phase'}
         assert required.issubset(set(df.columns)), f"Missing columns: {required - set(df.columns)}"
         print(f"✓ Loaded {len(df):,} raw samples from {filepath}")
         return df
@@ -83,6 +83,7 @@ class FeatureExtractor:
                 feature_packet = {
                     "timestamp": row['timestamp'].strftime("%Y-%m-%dT%H:%M:%SZ"),
                     "component": component_type,
+                    "failure_phase": int(row['failure_phase']), # Passed through for ground truth selection
                     "features": {
                         "vibration_rms": round(vibration_rms, 2),       # PRIMARY
                         "vibration_trend": round(vibration_trend, 3),   # Degradation rate

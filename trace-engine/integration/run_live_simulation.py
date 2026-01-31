@@ -35,16 +35,17 @@ FEATURE_JSON = os.path.join(DATA_SENSOR_DIR, "extracted_features.json")
 # -------------------------------------------------
 
 def run_live_simulation():
+    import sys
     # 1️⃣ Run raw data generation
     subprocess.run(
-        ["python", DATA_GEN_SCRIPT],
+        [sys.executable, DATA_GEN_SCRIPT],
         check=True,
         cwd=DATA_SENSOR_DIR  # Run inside data-n-sensor so files are saved there
     )
 
     # 2️⃣ Run feature extraction
     subprocess.run(
-        ["python", FEATURE_SCRIPT],
+        [sys.executable, FEATURE_SCRIPT],
         check=True,
         cwd=DATA_SENSOR_DIR  # Run inside data-n-sensor so it finds the CSV and saves JSON there
     )
@@ -59,19 +60,46 @@ def run_live_simulation():
     if not isinstance(feature_events, list):
         raise ValueError("extracted_features.json must be a list")
 
-    # 4️⃣ Select only 2 events per component (demo control)
+    # 4️⃣ Select exactly 3 events: 1 Pump (Normal), 1 Conveyor (Pre-Failure), 1 Compressor (Failure)
     selected_events = []
-    seen = {}
-
+    
+    # Requirement:
+    # - PUMP: Normal (Phase 0)
+    # - CONVEYOR: Pre-Failure (Phase 2)
+    # - COMPRESSOR: Failure Risk (Phase 3)
+    
+    requirements = {
+        "PUMP": 0,
+        "CONVEYOR": 2,
+        "COMPRESSOR": 3
+    }
+    
+    found = {k: False for k in requirements}
+    
+    # Shuffle or just find first match; finding first match is stable
     for event in feature_events:
-        component = event.get("component")
-        if component is None:
-            continue
-
-        seen.setdefault(component, 0)
-        if seen[component] < 2:
-            selected_events.append(event)
-            seen[component] += 1
+        comp = event.get("component")
+        phase = event.get("failure_phase")
+        
+        if comp in requirements and not found[comp]:
+            if phase == requirements[comp]:
+                selected_events.append(event)
+                found[comp] = True
+                
+        if all(found.values()):
+            break
+            
+    # Fallback: if specific phases not found, just take one of each component
+    if not all(found.values()):
+        print(f"⚠️ Could not find all exact phases. Found: {found}")
+        # Try to fill gaps
+        for k, v in found.items():
+            if not v:
+                # Find any event for this component
+                for event in feature_events:
+                    if event.get("component") == k:
+                        selected_events.append(event)
+                        break
 
     # 5️⃣ Run Trace Engine
     engine = RuleEngine()
